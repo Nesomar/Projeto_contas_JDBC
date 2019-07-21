@@ -14,10 +14,9 @@ public class BD {
 
 	public void geraTabelaContas() {
 
-		try {
+		try (Statement statement = this.connection.createStatement()) {
 			String schema = " CREATE TABLE Conta ( id SERIAL NOT NULL, titular VARCHAR(256), numero VARCHAR(256), "
 					+ "banco VARCHAR(256), agencia VARCHAR(256),  PRIMARY KEY(id))";
-			Statement statement = this.connection.createStatement();
 			statement.execute(schema);
 		} catch (SQLException e) {
 			// ignora se a tabela já existe
