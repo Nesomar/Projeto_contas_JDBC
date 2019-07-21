@@ -6,18 +6,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import br.com.caelum.financas.modelo.Conta;
 
 public class ContaDAO {
 
 	private Connection connection;
+	
+	private static final Logger Log = Logger.getLogger(ContaDAO.class.getName());
 
 	public ContaDAO(Connection connection) {
 		this.connection = connection;
 	}
 
-	public void adiciona(Conta conta) {
+	public void adicionar(Conta conta) {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -29,11 +33,12 @@ public class ContaDAO {
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao adicionar valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void altera(Conta conta) {
+	public void alterar(Conta conta) {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -46,11 +51,12 @@ public class ContaDAO {
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao alterar valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void remove(Conta conta) {
+	public void remover(Conta conta) {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -59,11 +65,12 @@ public class ContaDAO {
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao remover valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	public Conta procura(Integer id) {
+	public Conta procurar(Integer id) {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -81,11 +88,12 @@ public class ContaDAO {
 			ps.close();
 			return conta;
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao procura valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	public List<Conta> listaPaginada(int primeiro, int quantidade) {
+	public List<Conta> listarPaginada(int primeiro, int quantidade) {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -109,11 +117,12 @@ public class ContaDAO {
 			ps.close();
 			return lista;
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao listaPaginada valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	public List<Conta> lista() {
+	public List<Conta> listar() {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -134,11 +143,12 @@ public class ContaDAO {
 			ps.close();
 			return lista;
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao listar valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	public List<Conta> procuraPeloNome(String nome) {
+	public List<Conta> procurarPeloNome(String nome) {
 
 		try {
 			PreparedStatement ps = this.connection
@@ -160,6 +170,7 @@ public class ContaDAO {
 			ps.close();
 			return lista;
 		} catch (SQLException e) {
+			Log.log(Level.SEVERE, "Erro ao procuraPeloNome valores na tabela conta", e);
 			throw new RuntimeException(e);
 		}
 	}

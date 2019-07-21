@@ -23,9 +23,9 @@ public class TesteJDBCHSQLDB {
 		con.setAutoCommit(false);
 
 		ContaDAO dao = new ContaDAO(con);
-		dao.adiciona(conta);
+		dao.adicionar(conta);
 
-		List<Conta> contas = dao.lista();
+		List<Conta> contas = dao.listar();
 
 		for (Conta c : contas) {
 			System.out.println(c.getTitular());

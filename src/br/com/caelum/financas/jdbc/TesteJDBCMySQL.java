@@ -21,9 +21,9 @@ public class TesteJDBCMySQL {
 		con.setAutoCommit(false);
 
 		ContaDAO dao = new ContaDAO(con);
-		dao.adiciona(conta);
+		dao.adicionar(conta);
 
-		List<Conta> lista = dao.lista();
+		List<Conta> lista = dao.listar();
 
 		for (Conta c : lista) {
 			System.out.println(c.getTitular());
